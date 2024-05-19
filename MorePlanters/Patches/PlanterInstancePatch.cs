@@ -34,10 +34,13 @@ namespace MorePlanters.Patches
             stack = ResourceStack.CreateEmptyStack();
             if (__instance.myDef.displayName == ResourceNames.Planter) return true;
 
+
             if(__instance.myDef.displayName == MorePlantersPlugin.planterMk3Name) {
                 HandleTakeAvailableResForMk3(__instance, ref __result, out stack);
                 return false;
             }
+
+            if (!MorePlantersPlugin.doublePlants.Value) return true;
 
             int num = 0;
             for (int i = 0; i < __instance.plantSlots.Length; i++) {

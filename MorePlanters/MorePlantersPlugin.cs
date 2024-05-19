@@ -17,7 +17,7 @@ namespace MorePlanters
     {
         private const string MyGUID = "com.equinox.MorePlanters";
         private const string PluginName = "MorePlanters";
-        private const string VersionString = "1.0.1";
+        private const string VersionString = "1.1.0";
 
         private static readonly Harmony Harmony = new Harmony(MyGUID);
         public static ManualLogSource Log = new ManualLogSource(PluginName);
@@ -36,6 +36,7 @@ namespace MorePlanters
         public static GameObject planterMk3Prefab;
 
         // Config Entries
+        public static ConfigEntry<bool> doublePlants;
         public static ConfigEntry<float> slot1XOffset;
         public static ConfigEntry<float> slot2XOffset;
         public static ConfigEntry<float> slot3XOffset;
@@ -155,6 +156,7 @@ namespace MorePlanters
         // Private Functions
 
         private void CreateConfigEntries() {
+            doublePlants = Config.Bind("General", "Double Plants", true, new ConfigDescription($"Whether the {planterMk2Name} should produce two plants per seed. Disable if not using a mod to void excess"));
             slot1XOffset = Config.Bind("General", "Slot 1 X Offset", -295f, new ConfigDescription("Controls the horizontal offset of the filter GUI for the first plant slot", new AcceptableValueRange<float>(-5000, 5000)));
             slot2XOffset = Config.Bind("General", "Slot 2 X Offset", -145f, new ConfigDescription("Controls the horizontal offset of the filter GUI for the second plant slot", new AcceptableValueRange<float>(-5000, 5000)));
             slot3XOffset = Config.Bind("General", "Slot 3 X Offset", 10f, new ConfigDescription("Controls the horizontal offset of the filter GUI for the third plant slot", new AcceptableValueRange<float>(-5000, 5000)));
